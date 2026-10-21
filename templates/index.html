@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TeamFliyou — Portfolio</title>
+<meta name="description" content="Portfolio de Zayd Fliyou : projets web, IA et Rust.">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="hero">
+  <p class="eyebrow">Portfolio</p>
+  <h1>Zayd Fliyou</h1>
+  <p class="lead">Étudiant en informatique. Je construis des applications web, des outils IA et des systèmes de gestion, de plus en plus en Rust.</p>
+  <a class="btn" href="https://github.com/Teamfliyou">GitHub →</a>
+</header>
+<main>
+  <h2>Projets</h2>
+  <div class="grid">
+  {% for p in projects %}
+    <article class="card">
+      <span class="date">{{ p.date }}</span>
+      <h3>{{ p.name }}</h3>
+      <p>{{ p.desc }}</p>
+      <ul>{% for s in p.stack %}<li>{{ s }}</li>{% endfor %}</ul>
+      {% match p.url %}{% when Some with (u) %}<a href="{{ u }}">Voir le code →</a>{% when None %}<span class="private">Dépôt privé</span>{% endmatch %}
+    </article>
+  {% endfor %}
+  </div>
+</main>
+<footer>© TeamFliyou · Fait avec Rust, Axum et Askama</footer>
+</body>
+</html>
