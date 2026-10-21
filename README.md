@@ -2,6 +2,8 @@
 
 Site vitrine personnel présentant mes projets GitHub, écrit en **Rust** avec **Axum** (serveur HTTP) et **Askama** (templates HTML compilés).
 
+Contact : zaydfliyou25@gmail.com — étudiant à l'EILCO (CP2).
+
 ## Pourquoi Rust ?
 
 - **Un seul binaire** : pas de Node, pas de dépendances à l'exécution, déploiement trivial.
