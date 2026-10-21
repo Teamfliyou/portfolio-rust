@@ -14,8 +14,9 @@ Site vitrine personnel présentant mes projets GitHub, écrit en **Rust** avec *
 portfolio/
 ├── Cargo.toml            dépendances (axum, askama, tokio, tower-http)
 ├── src/main.rs           liste des projets + routes + démarrage du serveur
-├── templates/index.html  page unique (boucle Askama sur les projets)
-└── static/style.css      styles, thème clair/sombre automatique
+├── templates/index.html  page unique (hero, à propos, compétences, parcours, projets, contact)
+├── static/main.js        animations : machine à écrire, apparition au scroll, compteurs, filtres
+└── static/style.css      styles, animations CSS, thème clair/sombre automatique
 ```
 
 ### Comment ça marche
@@ -67,3 +68,12 @@ Secret Santa (Rust), Qalamio, Lernoviq (coach TOEIC IA), Vooby PrestaShop, Table
 ## Stack
 
 Rust · Axum 0.7 · Askama 0.12 · Tokio · tower-http · CSS pur
+
+## Fonctionnalités du site
+
+- **Hero animé** : formes flottantes, titre en dégradé, texte qui s'écrit tout seul.
+- **Apparition au scroll** (`IntersectionObserver`), barre de progression, compteurs animés.
+- **Compétences** avec barres qui se remplissent.
+- **Parcours** : frise chronologique des dates de chaque projet.
+- **Projets** filtrables par technologie, cartes avec effet au survol.
+- Responsive, thème clair/sombre, respect de `prefers-reduced-motion`.

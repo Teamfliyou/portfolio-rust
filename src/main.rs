@@ -23,14 +23,32 @@ const PROJECTS: &[Project] = &[
     Project { name: "SIS AMA", date: "Déc. 2025", desc: "Première version de gestion scolaire : absences, notes, bulletins PDF, paiements.", stack: &["PHP", "Docker"], url: Some("https://github.com/Teamfliyou/ASSO-AMA-sis-") },
 ];
 
+struct Skill {
+    name: &'static str,
+    level: u8,
+}
+
+const SKILLS: &[Skill] = &[
+    Skill { name: "Rust", level: 70 },
+    Skill { name: "Python", level: 85 },
+    Skill { name: "JavaScript / TypeScript", level: 80 },
+    Skill { name: "PHP", level: 65 },
+    Skill { name: "SQL / SQLite / PostgreSQL", level: 70 },
+    Skill { name: "IA / LLM (DeepSeek, Gemini)", level: 75 },
+];
+
 #[derive(Template)]
 #[template(path = "index.html")]
 struct Index {
     projects: &'static [Project],
+    skills: &'static [Skill],
+    total: usize,
+    public: usize,
 }
 
 async fn index() -> Html<String> {
-    Html(Index { projects: PROJECTS }.render().expect("template"))
+    let public = PROJECTS.iter().filter(|p| p.url.is_some()).count();
+    Html(Index { projects: PROJECTS, skills: SKILLS, total: PROJECTS.len(), public }.render().expect("template"))
 }
 
 #[tokio::main]

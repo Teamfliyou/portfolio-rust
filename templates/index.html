@@ -3,31 +3,79 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TeamFliyou — Portfolio</title>
+<title>Zayd Fliyou — Portfolio</title>
 <meta name="description" content="Portfolio de Zayd Fliyou : projets web, IA et Rust.">
 <link rel="stylesheet" href="/static/style.css">
+<script src="/static/main.js" defer></script>
 </head>
 <body>
-<header class="hero">
-  <p class="eyebrow">Portfolio</p>
-  <h1>Zayd Fliyou</h1>
-  <p class="lead">Étudiant en informatique. Je construis des applications web, des outils IA et des systèmes de gestion, de plus en plus en Rust.</p>
-  <a class="btn" href="https://github.com/Teamfliyou">GitHub →</a>
+<div id="progress"></div>
+<nav class="nav">
+  <a class="logo" href="#top">ZF<span>.</span></a>
+  <div><a href="#about">À propos</a><a href="#skills">Compétences</a><a href="#timeline">Parcours</a><a href="#projects">Projets</a><a href="#contact">Contact</a></div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <p class="eyebrow">Bonjour, je suis</p>
+  <h1>Zayd <span class="grad">Fliyou</span></h1>
+  <p class="typed">Je construis <span id="typed" data-words="des applications web|des outils IA|des systèmes de gestion|des serveurs en Rust"></span><i class="caret"></i></p>
+  <div class="cta"><a class="btn" href="#projects">Voir mes projets</a><a class="btn ghost" href="https://github.com/Teamfliyou">GitHub →</a></div>
+  <a class="scroll" href="#about" aria-label="Défiler">↓</a>
 </header>
+
 <main>
-  <h2>Projets</h2>
-  <div class="grid">
+<section id="about" class="reveal">
+  <h2>À propos</h2>
+  <p class="big">Étudiant en informatique (Cycle Préparatoire Intégré, Dunkerque), j'aime transformer des besoins concrets en applications utiles : gestion scolaire pour une association, coach TOEIC propulsé par l'IA, tableau de bord étudiant, sites vitrines. Depuis peu, je passe mes projets en <strong>Rust</strong> pour leur fiabilité et leur vitesse.</p>
+  <div class="stats">
+    <div><b data-count="{{ total }}">0</b><span>projets</span></div>
+    <div><b data-count="{{ public }}">0</b><span>dépôts publics</span></div>
+    <div><b data-count="7">0</b><span>langages</span></div>
+    <div><b data-count="2">0</b><span>ans de code</span></div>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <h2>Compétences</h2>
+  <div class="skills">
+  {% for s in skills %}
+    <div class="skill"><div class="row"><span>{{ s.name }}</span><em>{{ s.level }}%</em></div><div class="bar"><i data-w="{{ s.level }}"></i></div></div>
+  {% endfor %}
+  </div>
+</section>
+
+<section id="timeline" class="reveal">
+  <h2>Parcours</h2>
+  <ol class="timeline">
   {% for p in projects %}
-    <article class="card">
+    <li class="tl"><span class="dot"></span><time>{{ p.date }}</time><b>{{ p.name }}</b></li>
+  {% endfor %}
+  </ol>
+</section>
+
+<section id="projects" class="reveal">
+  <h2>Projets</h2>
+  <div class="filters" id="filters"><button class="on" data-f="all">Tous</button></div>
+  <div class="grid" id="grid">
+  {% for p in projects %}
+    <article class="card" data-tags="{% for s in p.stack %}{{ s }},{% endfor %}">
       <span class="date">{{ p.date }}</span>
       <h3>{{ p.name }}</h3>
       <p>{{ p.desc }}</p>
       <ul>{% for s in p.stack %}<li>{{ s }}</li>{% endfor %}</ul>
-      {% match p.url %}{% when Some with (u) %}<a href="{{ u }}">Voir le code →</a>{% when None %}<span class="private">Dépôt privé</span>{% endmatch %}
+      {% match p.url %}{% when Some with (u) %}<a class="lnk" href="{{ u }}">Voir le code →</a>{% when None %}<span class="private">🔒 Dépôt privé</span>{% endmatch %}
     </article>
   {% endfor %}
   </div>
+</section>
+
+<section id="contact" class="reveal">
+  <h2>Contact</h2>
+  <p class="big">Un projet, une idée, une collaboration ? Retrouve-moi sur GitHub.</p>
+  <a class="btn" href="https://github.com/Teamfliyou">github.com/Teamfliyou</a>
+</section>
 </main>
-<footer>© TeamFliyou · Fait avec Rust, Axum et Askama</footer>
+<footer>© 2026 Zayd Fliyou · Fait avec Rust, Axum et Askama</footer>
 </body>
 </html>
